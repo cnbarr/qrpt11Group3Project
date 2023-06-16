@@ -1,15 +1,15 @@
-import {Google} from './googleBPDWgpj'
+import {dansPage} from './dansPageObjects';
 import { Driver } from 'selenium-webdriver/chrome'
 const fs = require('fs')
-const google = new Google()
+const dans = new dansPage();
 
 test('do a search', async () => {
-    await google.navigate()
-    await google.search('base layer')
-    let text = await google.getResults()
+    await dans.navigate()
+    await dans.search('base layer')
+    let text = await dans.getResults()
     expect(text).toContain('base layer')
     await fs.writeFile(`${__dirname}/google.png`,
-     await google.driver.takeScreenshot(), "base64",
+     await dans.driver.takeScreenshot(), "base64",
      (e) => {
          if (e) console.error(e)
          else console.log('Save Succesful')
@@ -22,5 +22,5 @@ test('do a search', async () => {
 
 })
 afterAll(async () => {
-    await google.driver.quit()
+    await dans.driver.quit()
 })
