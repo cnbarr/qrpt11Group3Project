@@ -8,9 +8,11 @@ interface Options {
     url?: string; 
     // if no url is supplied use the one in the constructor. 
 }
+
 export class BasePage {
     driver: WebDriver; 
     url: string; 
+
     constructor(options?: Options) {
         if (options && options.driver) this.driver = options.driver; 
         else
